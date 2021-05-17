@@ -26,6 +26,12 @@
       <label>Vue3</label>
     </div>
 
+    <label>Skills</label>
+    <input type="text" v-model="tempSkill" @keydown.enter.prevent="addSkill">
+    <div v-for="skill in skills" :key="skill" class="pill">
+      {{ skill }}
+    </div>
+
     <div class="terms">
       <input type="checkbox" v-model="terms" required>
       <label>Accept terms and conditions</label>
@@ -43,7 +49,20 @@ export default {
       password: '',
       role: '',
       terms: false,
-      languages: []
+      languages: [],
+      tempSkill: '',
+      skills: []
+    }
+  },
+  methods: {
+    addSkill(e) {
+      if (this.tempSkill && !this.skills.includes(this.tempSkill)) {
+        this.skills.push(this.tempSkill.trim());
+      }
+      this.tempSkill = '';
+    },
+    removeSkill() {
+
     }
   }
 }
