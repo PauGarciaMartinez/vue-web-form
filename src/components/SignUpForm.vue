@@ -1,10 +1,11 @@
 <template>
-  <form>
+  <form @submit.prevent="handleSubmit">
     <label>Email</label>
     <input type="email" required v-model="email">
 
     <label>Password</label>
     <input type="password" required v-model="password">
+    <div v-if="passwordError" class="error">{{ passwordError }}</div>
 
     <label>Role</label>
     <select v-model="role" required>
@@ -26,7 +27,7 @@
       <label>Vue3</label>
     </div>
 
-    <label>Skills</label>
+    <label>Other Skills</label>
     <input type="text" v-model="tempSkill" @keydown.enter.prevent="addSkill">
     <div v-for="skill in skills" :key="skill" class="pill">
       <span @click="removeSkill(skill)">{{ skill }}</span>
@@ -35,6 +36,10 @@
     <div class="terms">
       <input type="checkbox" v-model="terms" required>
       <label>Accept terms and conditions</label>
+    </div>
+
+    <div class="submit">
+      <button>Create an account</button>
     </div>
 
   </form>
@@ -51,7 +56,8 @@ export default {
       terms: false,
       languages: [],
       tempSkill: '',
-      skills: []
+      skills: [],
+      passwordError: ''
     }
   },
   methods: {
@@ -63,6 +69,19 @@ export default {
     },
     removeSkill(skill) {
       this.skills = this.skills.filter(item => item !== skill);
+    },
+    handleSubmit() {
+      this.passwordError = this.password.length > 5 ? 
+        '' : 'Password must be at least 6 chars long';
+
+      if (!this.passwordError) {
+        console.log('Email:', this.email);
+        console.log('Password:', this.password);
+        console.log('Role:', this.role);
+        console.log('Languages:', this.languages);
+        console.log('Other skills:', this.skills);
+        console.log('Terms accepted:', this.terms);
+      }
     }
   }
 }
@@ -76,6 +95,7 @@ form {
   text-align: left;
   padding: 40px;
   border-radius: 10px;
+  box-shadow: 5px 5px 10px #e0e0e0;
 }
 label {
   color: #aaa;
@@ -127,5 +147,28 @@ input[type='checkbox'] {
   font-weight: bold;
   color: #777;
   cursor: pointer;
+}
+button {
+  background: #7c7c7c;
+  border: 0;
+  padding: 10px 20px;
+  margin-top: 20px;
+  color: white;
+  border-radius: 20px;
+  transition: 0.2s;
+}
+button:hover {
+  cursor: pointer;
+  background-color: #555;
+  transition: 0.2s;
+}
+.submit {
+  text-align: center;
+}
+.error {
+  color: #000000;
+  margin-top: 10px;
+  font-size: 0.8em;
+  font-weight: bold;
 }
 </style>
