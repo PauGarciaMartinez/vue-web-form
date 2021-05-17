@@ -14,17 +14,25 @@
     </select>
 
     <div class="languages">
-      <input type="checkbox" value="html" v-model="languages">
-      <label>HTML5</label>
-    
-      <input type="checkbox" value="css" v-model="languages">
-      <label>CSS3</label>
-    
-      <input type="checkbox" value="javascript" v-model="languages">
-      <label>JavaScript</label>
+      <div class="check">
+        <input type="checkbox" value="html" v-model="languages">
+        <label>HTML5</label>
+      </div>
 
-      <input type="checkbox" value="vue" v-model="languages">
-      <label>Vue3</label>
+      <div class="check">
+        <input type="checkbox" value="css" v-model="languages">
+        <label>CSS3</label>
+      </div>
+
+      <div class="check">
+        <input type="checkbox" value="javascript" v-model="languages">
+        <label>JavaScript</label>
+      </div>
+
+      <div class="check">
+        <input type="checkbox" value="vue" v-model="languages">
+        <label>Vue3</label>
+      </div>
     </div>
 
     <label>Other Skills</label>
@@ -125,16 +133,24 @@ input[type='checkbox'] {
 }
 .languages {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  gap: 5px;
+  gap: 2rem;
 }
 .languages input {
   margin: 5px -3px 0px 15px;
 }
 .languages input:first-child {
   margin-left: 0px;
+}
+.check {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5rem;
 }
 .pill {
   display: inline-block;
@@ -147,6 +163,15 @@ input[type='checkbox'] {
   font-weight: bold;
   color: #777;
   cursor: pointer;
+}
+.terms {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+.terms input {
+  margin: 5px 10px 0px 0px;
 }
 button {
   background: #7c7c7c;
