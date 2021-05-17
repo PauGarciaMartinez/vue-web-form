@@ -7,10 +7,29 @@
     <input type="password" required v-model="password">
 
     <label>Role</label>
-    <select v-model="role">
+    <select v-model="role" required>
       <option value="developer">Web Developer</option>
       <option value="designer">Web Designer</option>
     </select>
+
+    <div class="languages">
+      <input type="checkbox" value="html" v-model="languages">
+      <label>HTML5</label>
+    
+      <input type="checkbox" value="css" v-model="languages">
+      <label>CSS3</label>
+    
+      <input type="checkbox" value="javascript" v-model="languages">
+      <label>JavaScript</label>
+
+      <input type="checkbox" value="vue" v-model="languages">
+      <label>Vue3</label>
+    </div>
+
+    <div class="terms">
+      <input type="checkbox" v-model="terms" required>
+      <label>Accept terms and conditions</label>
+    </div>
 
   </form>
 </template>
@@ -22,7 +41,9 @@ export default {
     return {
       email: '',
       password: '',
-      role: ''
+      role: '',
+      terms: false,
+      languages: []
     }
   }
 }
@@ -55,5 +76,25 @@ input, select {
   border-bottom: 1px solid #ddd;
   color: #555;
   background-color: white;
+}
+input[type='checkbox'] {
+  display: inline-block;
+  width: 16px;
+  margin: 0 10px 0 0;
+  position: relative;
+  top: 2px;
+}
+.languages {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 5px;
+}
+.languages input {
+  margin: 5px -3px 0px 15px;
+}
+.languages input:first-child {
+  margin-left: 0px;
 }
 </style>
